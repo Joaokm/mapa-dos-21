@@ -221,10 +221,11 @@
     const closeTaunts=['O Sr. Aluado apresenta seus cumprimentos e pede que você mantenha o nariz comprido fora da vida alheia.','O Sr. Almofadinhas lamenta informar que magia mal pronunciada não fecha mapa nenhum.','O Sr. Pontas aconselha que você treine o feitiço antes de mexer com a obra dos Marotos.','O Sr. Rabicho dá boa tarde e sugere que você capriche na próxima tentativa.'];
     let tauntIdx=0;
     function voiceSuccess(){matched=true;showVoice('success','Encanto reconhecido',voiceMode==='open'?'O mapa está despertando...':'O segredo será guardado...');try{recognition.stop()}catch(_){};later(()=>{hideVoice();voiceMode==='open'?openTheMap():closeTheMap()},380)}
+    function speechSR(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const ua=navigator.userAgent||'';const isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);return(SR&&!isIOS)?SR:null}
     function doAction(mode){hideVoice();mode==='open'?openTheMap():closeTheMap()}
     function startVoice(mode){
       if(busy)return;audioEngine();primeCues();voiceMode=mode;matched=false;heardSpeech=false;voiceFallback.textContent='Usar toque mágico';
-      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+      const SR=speechSR();
       if(!SR){doAction(mode);return}
       try{recognition=new SR()}catch(_){doAction(mode);return}
       recognition.lang='pt-BR';recognition.interimResults=true;recognition.continuous=false;
@@ -237,6 +238,7 @@
     voiceFallback.addEventListener('click',()=>{hideVoice();voiceMode==='open'?openTheMap():closeTheMap()});
     openMap.addEventListener('click',()=>startVoice('open'));closeMap.addEventListener('click',()=>startVoice('close'));
     document.querySelector('#tauntRetry').addEventListener('click',retryOpen);
+    if(!speechSR()){const sp=document.querySelector('.spell-area p');if(sp)sp.textContent='Toque na varinha para revelar o mapa.';const ob=document.querySelector('#openMap');if(ob){ob.querySelector('b').textContent='Tocar para revelar';ob.querySelector('em').textContent='Abra o Mapa do Maroto com um toque';}const cm=document.querySelector('#closeMap');if(cm)cm.innerHTML='<span class="wand-art"></span>Tocar para fechar';}
     let veilCtx=null,lastErase=null,lastTrail=null,trailRight=false;
     function initVeil(){
       const dpr=Math.min(devicePixelRatio||1,2),w=mapBook.offsetWidth,h=mapBook.offsetHeight;
