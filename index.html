@@ -43,12 +43,12 @@
     @keyframes wandTip{0%,100%{box-shadow:0 0 8px #fff,0 0 20px var(--glow),0 0 34px rgba(120,240,178,.6);opacity:.85}50%{box-shadow:0 0 14px #fff,0 0 30px var(--gold-bright),0 0 52px rgba(120,240,178,.95);opacity:1}}
     .spell-flash{position:fixed;inset:0;z-index:95;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--sx,70%) var(--sy,70%),#fff 0,#fff3cf 2.5%,rgba(120,240,178,.55) 9%,rgba(181,157,105,.28) 20%,transparent 46%)}body.spelling .spell-flash{animation:flash .9s ease-out}@keyframes flash{12%{opacity:1}100%{opacity:0;transform:scale(2)}}
     .incantation{position:fixed;z-index:96;inset:0;display:grid;place-items:center;text-align:center;padding:10vw;pointer-events:none;opacity:0;color:#fff4d4;text-shadow:0 0 8px #fff,0 0 26px rgba(243,214,147,.8),0 0 50px rgba(120,240,178,.6),0 2px 12px #000;font:italic clamp(1.8rem,5vw,5rem) "IM Fell English",serif}body.spelling .incantation{animation:incant 1.15s ease-out}@keyframes incant{0%{opacity:0;filter:blur(10px);transform:scale(.8)}30%,70%{opacity:1;filter:blur(0)}100%{opacity:0;transform:scale(1.08)}}
-    .map-scene{position:fixed;inset:0;z-index:50;display:grid;place-items:start center;padding:clamp(10px,3.2vh,38px) clamp(8px,2vw,24px);background:#04080a;visibility:hidden;opacity:0;transition:opacity .5s ease;perspective:1600px}
-    body.map-visible .map-scene{visibility:visible;opacity:1}.map-book{position:relative;z-index:2;width:min(1060px,90vw);height:min(720px,92svh);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 35px 80px #000,0 0 60px rgba(0,0,0,.6);transform:translateY(26px) scale(.72) rotateX(4deg);opacity:.5;transition:transform .9s cubic-bezier(.16,.75,.2,1),opacity .55s ease;transform-style:preserve-3d}body.map-open .map-book{transform:translateY(0) scale(1) rotateX(0);opacity:1}
+    .map-scene{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:clamp(8px,2vw,26px);background:radial-gradient(circle at 50% 38%,#1d1812,#080706 78%);visibility:hidden;opacity:0;transition:opacity .5s ease;perspective:1600px}
+    body.map-visible .map-scene{visibility:visible;opacity:1}.map-book{position:relative;z-index:2;width:min(1100px,94vw);height:min(784px,94svh);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 35px 80px #000,0 0 60px rgba(0,0,0,.6);transform:translateY(26px) scale(.72) rotateX(4deg);opacity:.5;transition:transform .9s cubic-bezier(.16,.75,.2,1),opacity .55s ease;transform-style:preserve-3d}body.map-open .map-book{transform:translateY(0) scale(1) rotateX(0);opacity:1}
     .panel{position:relative;overflow:hidden;background-color:var(--paper);background-image:radial-gradient(circle at 30% 20%,rgba(255,245,202,.55),transparent 25%),repeating-linear-gradient(102deg,transparent 0 36px,rgba(83,55,31,.035) 37px 38px);border:1px solid rgba(76,51,31,.24);backface-visibility:hidden;will-change:transform;transition:transform .92s cubic-bezier(.16,.78,.2,1)}
     .panel.left{transform-origin:right;transform:rotateY(88deg);z-index:3}.panel.center{z-index:2}.panel.right{transform-origin:left;transform:rotateY(-88deg);z-index:1}body.map-open .panel.left,body.map-open .panel.right{transform:rotateY(0)}body.map-open .panel.left{transition-delay:.08s}body.map-open .panel.right{transition-delay:.2s}body.map-closing .panel.left{transform:rotateY(88deg);transition-delay:.14s}body.map-closing .panel.right{transform:rotateY(-88deg);transition-delay:0s}
     .panel:before{content:"";position:absolute;inset:0;opacity:.18;background:repeating-radial-gradient(circle at 30% 40%,rgba(75,50,31,.22) 0 1px,transparent 2px 11px)}
-    .map-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.6;filter:drop-shadow(0 0 3px rgba(151,113,52,.55))}.map-lines path,.map-lines circle{fill:none;stroke:#6f5226;stroke-width:1.2}.map-lines .thin{stroke-width:.55}.map-lines text{font:8px serif;fill:#62493a;letter-spacing:2px}
+    .map-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.66}.map-lines *{vector-effect:non-scaling-stroke}.map-lines .frame{fill:none;stroke:#5e4524;stroke-width:2.4}.map-lines .frame2{fill:none;stroke:#5e4524;stroke-width:1}.map-lines .room{fill:none;stroke:#6a4d28;stroke-width:1.5;stroke-linejoin:round}.map-lines .thin{fill:none;stroke:#7a5c34;stroke-width:.85}.map-lines .stair{fill:none;stroke:#7a5c34;stroke-width:.9}.map-lines .dot{fill:none;stroke:#6a4d28;stroke-width:1.3;stroke-dasharray:1.5 5;stroke-linecap:round}.map-lines .lbl{font:italic 13px "IM Fell English",serif;fill:#5e4524;letter-spacing:1.5px}.map-lines .lbl.sm{font-size:11px}
     .map-content{position:absolute;inset:0;z-index:4;color:var(--ink);display:grid;grid-template-columns:.75fr 1.6fr .75fr;pointer-events:none;padding:clamp(18px,3.5vw,42px);opacity:0;transition:opacity .35s ease}body.map-writing .map-content{opacity:1}
     .side-note{font-style:italic;font-size:clamp(.72rem,1.2vw,.9rem);line-height:1.4;align-self:center;text-align:center;opacity:0;transform:rotate(-8deg)}.side-note.right{transform:rotate(7deg)}
     .invite{text-align:center;align-self:center}.invite .makers{font:700 clamp(.62rem,1.05vw,.8rem) Cinzel,serif;letter-spacing:.2em;text-transform:uppercase}.invite h2{font:900 clamp(2.5rem,6.8vw,5.9rem)/.84 Cinzel,serif;letter-spacing:-.06em;margin:.5rem 0;background:linear-gradient(96deg,#7a5a23,#c79a3c 30%,#a9802f 50%,#d7ab46 72%,#7a5a23);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 1px rgba(255,250,230,.5));animation:shimmer 8s linear infinite}.invite h2 span{display:block;font:italic 400 .3em "IM Fell English",serif;letter-spacing:.12em;margin-top:.75rem;-webkit-text-fill-color:#214a36;color:#214a36}.ornament{display:flex;align-items:center;gap:10px;margin:.9rem auto;width:min(330px,85%)}.ornament:before,.ornament:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a9802f,transparent)}.ornament i{font-style:normal;color:#bb8f33;text-shadow:0 0 10px rgba(215,171,70,.7);animation:auraPulse 3.5s ease-in-out infinite}
@@ -65,27 +65,7 @@
     .mic{width:42px;height:42px;margin:-2.3rem auto .55rem;border-radius:50%;display:grid;place-items:center;background:#132d21;border:1px solid #789682;box-shadow:0 0 0 0 rgba(184,218,194,.35);font-size:1.1rem}.voice-panel.listening .mic{animation:listen 1.1s ease-out infinite}@keyframes listen{to{box-shadow:0 0 0 18px rgba(184,218,194,0)}}
     .voice-panel strong{display:block;font:700 .68rem Cinzel,serif;letter-spacing:.14em;text-transform:uppercase}.voice-panel q{display:block;min-height:1.4em;margin-top:.35rem;color:#d7c493;font-style:italic}.voice-panel button{display:none;margin:.65rem auto 0;border:1px solid #a68e5e;background:transparent;color:#e9dbb8;padding:.5rem .7rem;cursor:pointer;font:700 .6rem Cinzel,serif;letter-spacing:.1em;text-transform:uppercase}.voice-panel.error button{display:block}
     .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 7px #fff,0 0 20px #b7d1be;z-index:100;pointer-events:none;transform:translate(-50%,-50%)}.cursor:after{content:"";position:absolute;width:54px;height:2px;right:4px;top:4px;background:linear-gradient(90deg,transparent,#dcc795);transform:rotate(-14deg);transform-origin:right}
-    @media(max-width:720px){body{cursor:auto}.cursor{display:none}.portrait{background-position:53% center}.hero-copy{padding:4vh 0}.spell-area{align-self:flex-start;text-align:left;margin:2rem 0 0}.wand-button{cursor:pointer}.map-book{height:84svh;width:95vw}.floaties{display:none}.hog-castle{height:14svh}.hog-moon{width:52px;height:52px;right:7%;top:4%}.map-content{grid-template-columns:1fr;padding:55px 24px 38px}.side-note{display:none}.facts{grid-template-columns:1fr}.fact{padding:.22rem}.fact+.fact{border-left:0;border-top:1px solid rgba(72,48,33,.25)}.menu{grid-template-columns:1fr;gap:14px;text-align:center}.menu h3{justify-content:center}.menu h3:before{display:none}.invite h2{font-size:clamp(2.1rem,13vw,4.4rem)}.oath{font-size:.88rem}.map-controls{top:10px;right:10px}.map-foot{font-size:.54rem;letter-spacing:.06em;bottom:6px}.explore-hint{bottom:4%;font-size:.8rem}}
-    /* ---- Cenário de Hogwarts no mapa ---- */
-    .hog{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s ease .25s}body.map-visible .hog{opacity:1}
-    .hog-sky{position:absolute;inset:0;background:radial-gradient(120% 95% at 50% 4%,transparent 46%,rgba(0,0,0,.6)),linear-gradient(180deg,#06140f 0%,#0a2118 30%,#08160f 58%,#040a08 100%)}
-    .hog-aurora{position:absolute;left:-12%;top:6%;width:124%;height:48%;background:radial-gradient(58% 78% at 30% 50%,rgba(64,205,135,.24),transparent 70%),radial-gradient(48% 70% at 72% 42%,rgba(96,232,166,.17),transparent 72%);filter:blur(22px);mix-blend-mode:screen;animation:auroraDrift 16s ease-in-out infinite alternate}
-    @keyframes auroraDrift{0%{transform:translateX(-3%) skewX(-5deg);opacity:.65}100%{transform:translateX(4%) skewX(4deg);opacity:1}}
-    .hog-moon{position:absolute;right:11%;top:9%;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 38% 36%,#fff8e9,#dde9df 58%,#9eb5a8);box-shadow:0 0 42px rgba(222,240,226,.55),0 0 130px rgba(120,240,178,.28)}
-    .hog-stars{position:absolute;inset:0}.hog-stars i{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 4px rgba(220,255,235,.8);opacity:.5;animation:twinkle 3s ease-in-out infinite}
-    @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
-    .hog-castle{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(250px,27svh);width:auto;filter:drop-shadow(0 0 34px rgba(40,150,95,.22))}
-    .hog-glow{position:absolute;left:50%;bottom:-3%;transform:translateX(-50%);width:min(1040px,92%);height:min(360px,40svh);background:radial-gradient(60% 96% at 50% 100%,rgba(160,220,255,.4),rgba(86,200,145,.24) 34%,transparent 70%);filter:blur(15px);mix-blend-mode:screen}
-    .hog-castle .body{fill:#0e2018;stroke:rgba(160,220,185,.32);stroke-width:.7}.hog-castle .win{fill:#ffe09a;filter:drop-shadow(0 0 6px rgba(255,215,130,1));animation:winFlicker 4.2s ease-in-out infinite}
-    .hog-castle .win:nth-of-type(2n){animation-delay:1.3s;animation-duration:5.4s}.hog-castle .win:nth-of-type(3n){animation-delay:2.5s}.hog-castle .win:nth-of-type(5n){animation-delay:.7s;animation-duration:3.4s}
-    @keyframes winFlicker{0%,100%{opacity:.9}45%{opacity:.5}72%{opacity:1}}
-    .hog-fog{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(0deg,rgba(7,20,15,.95),rgba(7,20,15,.4) 45%,transparent);filter:blur(3px)}
-    .floaties{position:absolute;inset:0;z-index:1;pointer-events:none}
-    .candle{position:absolute;width:7px;height:30px;border-radius:2px 2px 1px 1px;background:linear-gradient(#f7edca,#e4d196 58%,#c9a85e);box-shadow:0 0 12px rgba(243,226,160,.45),0 3px 6px rgba(0,0,0,.5);animation:floatY 6.5s ease-in-out infinite}
-    .candle:before{content:"";position:absolute;left:50%;top:-2px;width:1.6px;height:5px;background:#3a2a18;transform:translateX(-50%)}
-    .candle:after{content:"";position:absolute;left:50%;top:-13px;width:9px;height:15px;transform:translateX(-50%);border-radius:50% 50% 48% 52%/62% 62% 38% 38%;background:radial-gradient(circle at 50% 72%,#fff 0,#ffe39a 32%,#ff9d3c 68%,rgba(255,120,40,0) 100%);box-shadow:0 0 14px rgba(255,185,85,.95),0 0 32px rgba(255,150,60,.55);animation:flicker 1.5s ease-in-out infinite}
-    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-    @keyframes flicker{0%,100%{transform:translateX(-50%) scaleY(1);opacity:.95}50%{transform:translateX(-52%) scaleY(1.14) translateY(-1px);opacity:1}}
+    @media(max-width:720px){body{cursor:auto}.cursor{display:none}.portrait{background-position:53% center}.hero-copy{padding:4vh 0}.spell-area{align-self:flex-start;text-align:left;margin:2rem 0 0}.wand-button{cursor:pointer}.map-book{height:90svh;width:96vw}.map-content{grid-template-columns:1fr;padding:48px 22px 40px}.side-note{display:none}.facts{grid-template-columns:1fr}.fact{padding:.22rem}.fact+.fact{border-left:0;border-top:1px solid rgba(72,48,33,.25)}.menu{grid-template-columns:1fr;gap:14px;text-align:center}.menu h3{justify-content:center}.menu h3:before{display:none}.invite h2{font-size:clamp(2.1rem,13vw,4.4rem)}.oath{font-size:.88rem}.map-controls{top:10px;right:10px}.map-foot{font-size:.54rem;letter-spacing:.06em;bottom:6px}.explore-hint{bottom:4%;font-size:.8rem}}
   </style>
 </head>
 <body>
@@ -107,40 +87,44 @@
   <div class="spell-flash"></div><div class="incantation" id="incantation">Juro solenemente não fazer nada de bom.</div>
 
   <section class="map-scene" aria-modal="true" role="dialog" aria-label="Mapa do convite">
-    <div class="hog" aria-hidden="true">
-      <div class="hog-sky"></div>
-      <div class="hog-aurora"></div>
-      <div class="hog-glow"></div>
-      <div class="hog-moon"></div>
-      <div class="hog-stars"></div>
-      <svg class="hog-castle" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-        <path class="body" d="M0,360 L0,300 L120,300 L120,200 L148,200 L148,165 L165,148 L182,165 L182,200 L210,200 L210,300 L280,300 L280,245 L320,245 L320,300 L350,300 L350,150 L392,150 L392,92 L414,55 L436,92 L436,150 L478,150 L478,300 L520,300 L520,205 L575,205 L575,300 L600,300 L600,165 L626,165 L626,120 L645,98 L664,120 L664,165 L690,165 L690,300 L760,300 L760,235 L800,235 L800,300 L835,300 L835,185 L862,185 L862,150 L879,132 L896,150 L896,185 L923,185 L923,300 L1000,300 L1000,255 L1024,255 L1024,300 L1200,300 L1200,360 Z"/>
-        <rect class="win" x="156" y="215" width="10" height="13"/>
-        <rect class="win" x="292" y="258" width="9" height="11"/>
-        <rect class="win" x="405" y="172" width="14" height="21"/>
-        <rect class="win" x="405" y="214" width="14" height="16"/>
-        <rect class="win" x="528" y="226" width="9" height="22"/>
-        <rect class="win" x="544" y="226" width="9" height="22"/>
-        <rect class="win" x="560" y="226" width="9" height="22"/>
-        <rect class="win" x="636" y="194" width="12" height="15"/>
-        <rect class="win" x="772" y="252" width="9" height="12"/>
-        <rect class="win" x="786" y="252" width="9" height="12"/>
-        <rect class="win" x="872" y="205" width="10" height="13"/>
-      </svg>
-      <div class="hog-fog"></div>
-    </div>
-    <div class="floaties" aria-hidden="true">
-      <span class="candle" style="left:3.5%;top:26%;animation-delay:.2s"></span>
-      <span class="candle" style="left:6.5%;top:55%;animation-delay:1.6s"></span>
-      <span class="candle" style="right:3.5%;top:30%;animation-delay:.9s"></span>
-      <span class="candle" style="right:6.5%;top:60%;animation-delay:2.2s"></span>
-    </div>
     <div class="map-book">
       <div class="panel left"></div><div class="panel center"></div><div class="panel right"></div>
       <svg class="map-lines" viewBox="0 0 1120 760" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M40 120h190v100h130v-80h170v160h160V110h300v150H850v110H670v150H480V390H270v160H80z"/><path d="M170 60v620M375 40v680M745 40v680M960 75v610" class="thin"/><path d="M55 610h210v90h620v-90h180M480 390c80-65 170-70 250-5M480 410c80-65 170-70 250-5" class="thin"/>
-        <circle cx="560" cy="380" r="210"/><circle cx="560" cy="380" r="224" class="thin"/><circle cx="170" cy="190" r="70"/><circle cx="950" cy="205" r="75"/><circle cx="170" cy="610" r="55"/><circle cx="930" cy="610" r="60"/>
-        <text x="90" y="100">CORREDOR NORTE</text><text x="790" y="90">TORRE LESTE</text><text x="65" y="705">PASSAGEM OCULTA</text><text x="820" y="705">SALÃO PRINCIPAL</text>
+        <rect class="frame" x="16" y="16" width="1088" height="728"/>
+        <rect class="frame2" x="27" y="27" width="1066" height="706"/>
+        <!-- Ala Norte (sup. esq.) -->
+        <path class="thin" d="M60 150 H300 M280 60 V250"/>
+        <rect class="room" x="60" y="78" width="70" height="54"/><rect class="room" x="142" y="78" width="52" height="54"/><rect class="room" x="206" y="78" width="70" height="54"/>
+        <rect class="room" x="60" y="166" width="60" height="58"/><rect class="room" x="132" y="166" width="46" height="58"/>
+        <text class="lbl sm" x="62" y="70">ALA NORTE</text>
+        <!-- Torre de Astronomia (sup. dir.) -->
+        <circle class="room" cx="980" cy="152" r="60"/><circle class="thin" cx="980" cy="152" r="44"/><circle class="thin" cx="980" cy="152" r="28"/>
+        <path class="thin" d="M980 92 V212 M920 152 H1040 M937 109 L1023 195 M1023 109 L937 195"/>
+        <text class="lbl sm" x="890" y="84">TORRE DE ASTRONOMIA</text>
+        <!-- Escadarias móveis (esq.) -->
+        <path class="room" d="M58 332 h132 v36 h-96 v36 h132 v36 h-96 v36 h132"/>
+        <path class="stair" d="M66 340 v20 M80 340 v20 M94 340 v20 M108 340 v20 M122 340 v20 M136 340 v20 M150 340 v20 M164 340 v20 M178 340 v20"/>
+        <path class="stair" d="M110 404 v20 M124 404 v20 M138 404 v20 M152 404 v20 M166 404 v20 M180 404 v20 M194 404 v20 M208 404 v20"/>
+        <text class="lbl sm" x="58" y="324">ESCADARIAS MÓVEIS</text>
+        <!-- Pátio (dir.) -->
+        <rect class="room" x="906" y="332" width="150" height="140"/><rect class="thin" x="928" y="354" width="106" height="96"/>
+        <path class="thin" d="M906 354 H928 M1034 354 H1056 M906 450 H928 M1034 450 H1056"/>
+        <text class="lbl sm" x="946" y="324">PÁTIO</text>
+        <!-- Masmorras (inf. esq.) -->
+        <rect class="room" x="58" y="566" width="230" height="124"/>
+        <path class="thin" d="M115 566 V690 M173 566 V690 M231 566 V690 M58 608 H288 M58 649 H288"/>
+        <text class="lbl sm" x="58" y="558">MASMORRAS</text>
+        <!-- Sala Precisa (inf. dir.) -->
+        <path class="room" d="M900 690 v-70 h60 v-30 h96 v100 z"/>
+        <path class="thin" d="M930 690 V640 M990 690 V600 M1020 690 V600"/>
+        <text class="lbl sm" x="900" y="582">SALA PRECISA</text>
+        <!-- Corredores conectores -->
+        <path class="thin" d="M300 150 H470 M650 150 H920 M190 386 H300 M300 386 V520 M906 402 H800 M800 402 V520 M288 628 H470 M650 660 H900"/>
+        <!-- Passagens secretas -->
+        <path class="dot" d="M288 660 C 360 640 380 580 300 540 M906 472 C 840 510 860 560 900 610 M178 224 C 240 260 240 300 190 332"/>
+        <!-- Bússola -->
+        <circle class="thin" cx="980" cy="662" r="30"/><path class="room" d="M980 634 L989 662 L980 690 L971 662 Z"/><path class="thin" d="M950 662 H1010 M980 634 V690"/>
+        <text class="lbl sm" x="975" y="628">N</text>
       </svg>
       <div class="footsteps" id="footsteps" aria-hidden="true"></div>
       <div class="map-content">
@@ -276,7 +260,6 @@
     const _revealAt=revealAt;revealAt=function(cx,cy){_revealAt(cx,cy);if(body.classList.contains('map-writing')&&Math.random()<.5)spawnSparks(cx,cy,3)};
     mapBook.addEventListener('pointermove',e=>{if(body.classList.contains('map-writing')&&Math.random()<.35)spawnSparks(e.clientX,e.clientY,2)});
     const _spell=spell;spell=function(text,reverse=false){_spell(text,reverse);spawnSparks(innerWidth*0.5,innerHeight*0.5,reverse?22:40)};
-    (function genStars(){const box=document.querySelector('.hog-stars');if(!box)return;let html='';for(let i=0;i<46;i++){const x=(Math.random()*100).toFixed(2),y=(Math.random()*60).toFixed(2),s=(Math.random()<.22?2.4:1.4).toFixed(1),d=(Math.random()*4).toFixed(2),du=(2.4+Math.random()*3).toFixed(2);html+=`<i style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s;animation-duration:${du}s"></i>`}box.innerHTML=html})();
   </script>
 </body>
 </html>
