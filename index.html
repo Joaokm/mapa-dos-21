@@ -63,7 +63,8 @@
     .explore-hint{position:absolute;z-index:10;left:50%;bottom:7%;transform:translateX(-50%);color:#4d3829;background:rgba(221,203,159,.82);border:1px solid rgba(90,62,42,.35);padding:.6rem .85rem;font-style:italic;white-space:nowrap;opacity:0;transition:opacity .35s;pointer-events:none}body.map-loaded .explore-hint{opacity:1}body.exploring .explore-hint,body.has-revealed .explore-hint{opacity:0}
     .voice-panel{position:fixed;z-index:120;left:50%;bottom:clamp(22px,6vh,64px);width:min(460px,90vw);transform:translate(-50%,25px);padding:1rem 1.2rem;background:rgba(4,9,7,.94);border:1px solid rgba(220,205,164,.45);box-shadow:0 20px 55px #000;color:#eee5cf;text-align:center;opacity:0;visibility:hidden;transition:.3s}.voice-panel.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
     .mic{width:42px;height:42px;margin:-2.3rem auto .55rem;border-radius:50%;display:grid;place-items:center;background:#132d21;border:1px solid #789682;box-shadow:0 0 0 0 rgba(184,218,194,.35);font-size:1.1rem}.voice-panel.listening .mic{animation:listen 1.1s ease-out infinite}@keyframes listen{to{box-shadow:0 0 0 18px rgba(184,218,194,0)}}
-    .voice-panel strong{display:block;font:700 .68rem Cinzel,serif;letter-spacing:.14em;text-transform:uppercase}.voice-panel q{display:block;min-height:1.4em;margin-top:.35rem;color:#d7c493;font-style:italic}.voice-panel button{display:none;margin:.65rem auto 0;border:1px solid #a68e5e;background:transparent;color:#e9dbb8;padding:.5rem .7rem;cursor:pointer;font:700 .6rem Cinzel,serif;letter-spacing:.1em;text-transform:uppercase}.voice-panel.error button{display:block}
+    .voice-panel strong{display:block;font:700 .68rem Cinzel,serif;letter-spacing:.14em;text-transform:uppercase}.voice-panel q{display:block;min-height:1.4em;margin-top:.35rem;color:#d7c493;font-style:italic}.voice-panel button{display:none;margin:.65rem auto 0;border:1px solid #a68e5e;background:transparent;color:#e9dbb8;padding:.5rem .7rem;cursor:pointer;font:700 .6rem Cinzel,serif;letter-spacing:.1em;text-transform:uppercase}.voice-panel.error button,.voice-panel.taunt button{display:block}
+    .voice-panel.taunt{background:linear-gradient(#e8d4a1,#d6bd86);border-color:#8a6a3b;box-shadow:0 20px 55px #000,inset 0 0 40px rgba(120,84,40,.18)}.voice-panel.taunt strong{color:#6a4a22}.voice-panel.taunt q{color:#43301f;font-size:1.02rem;line-height:1.45}.voice-panel.taunt button{border-color:#8a6a3b;color:#4a3418}.voice-panel.taunt .mic{background:#caa85f;border-color:#8a6a3b;color:#3a2a1a;animation:none}
     .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 7px #fff,0 0 20px #b7d1be;z-index:100;pointer-events:none;transform:translate(-50%,-50%)}.cursor:after{content:"";position:absolute;width:54px;height:2px;right:4px;top:4px;background:linear-gradient(90deg,transparent,#dcc795);transform:rotate(-14deg);transform-origin:right}
     @media(max-width:720px){body{cursor:auto}.cursor{display:none}.portrait{background-position:53% center}.hero-copy{padding:4vh 0}.spell-area{align-self:flex-start;text-align:left;margin:2rem 0 0}.wand-button{cursor:pointer}.map-book{height:90svh;width:96vw}.map-content{grid-template-columns:1fr;padding:48px 22px 40px}.side-note{display:none}.facts{grid-template-columns:1fr}.fact{padding:.22rem}.fact+.fact{border-left:0;border-top:1px solid rgba(72,48,33,.25)}.menu{grid-template-columns:1fr;gap:14px;text-align:center}.menu h3{justify-content:center}.menu h3:before{display:none}.invite h2{font-size:clamp(2.1rem,13vw,4.4rem)}.oath{font-size:.88rem}.map-controls{top:10px;right:10px}.map-foot{font-size:.54rem;letter-spacing:.06em;bottom:6px}.explore-hint{bottom:4%;font-size:.8rem}}
   </style>
@@ -130,7 +131,7 @@
       <div class="map-content">
         <p class="side-note reveal r3">Os caminhos foram traçados.<br>Os convidados, encontrados.</p>
         <article class="invite">
-          <div class="makers reveal r1">Os Marotos &amp; Magizoólogos convocam você</div>
+          <div class="makers reveal r1">Os Srs. Aluado, Rabicho, Almofadinhas e Pontas têm a honra de apresentar</div>
           <h2 class="reveal r2">21 anos<span>uma noite digna de entrar para o mapa</span></h2>
           <div class="ornament reveal r3"><i>✦</i></div>
           <div class="facts reveal r4">
@@ -204,15 +205,18 @@
     function phraseMatches(text,mode){const s=clean(text);return mode==='open'?(s.includes('juro solenemente')&&(s.includes('nada de bom')||s.includes('nao fazer nada'))):(s.includes('malfeito feito')||s.includes('mal feito feito')||s.endsWith('feito feito'))}
     function showVoice(kind,title,text){voicePanel.className='voice-panel show '+kind;voiceTitle.textContent=title;voiceText.textContent=text}
     function hideVoice(){voicePanel.className='voice-panel';clearTimeout(voiceTimeout)}
+    const closeTaunts=['O Sr. Aluado apresenta seus cumprimentos e pede que você mantenha o nariz comprido fora da vida alheia.','O Sr. Almofadinhas lamenta informar que magia mal pronunciada não fecha mapa nenhum.','O Sr. Pontas aconselha que você treine o feitiço antes de mexer com a obra dos Marotos.','O Sr. Rabicho dá boa tarde e sugere que você capriche na próxima tentativa.'];
+    let tauntIdx=0;
+    function showTaunt(){voicePanel.className='voice-panel show taunt';voiceTitle.textContent='O Mapa do Maroto responde';voiceText.textContent='«'+closeTaunts[tauntIdx++%closeTaunts.length]+'»';voiceFallback.textContent='Fechar com toque mágico'}
     function voiceSuccess(){matched=true;showVoice('success','Encanto reconhecido',voiceMode==='open'?'O mapa está despertando...':'O segredo será guardado...');try{recognition.stop()}catch(_){};later(()=>{hideVoice();voiceMode==='open'?openTheMap():closeTheMap()},380)}
     function startVoice(mode){
-      if(busy)return;audioEngine();primeCues();voiceMode=mode;matched=false;
+      if(busy)return;audioEngine();primeCues();voiceMode=mode;matched=false;voiceFallback.textContent='Usar toque mágico';
       if(!SpeechRecognition){showVoice('error','Escuta indisponível','Este navegador não oferece reconhecimento de voz.');return}
       recognition=new SpeechRecognition();recognition.lang='pt-BR';recognition.interimResults=true;recognition.continuous=false;
       recognition.onstart=()=>{showVoice('listening','Escuta em português (Brasil)',mode==='open'?'Diga: “Eu juro solenemente não fazer nada de bom.”':'Diga: “Malfeito feito.”');voiceTimeout=setTimeout(()=>{try{recognition.stop()}catch(_){}},8500)};
       recognition.onresult=e=>{let heard='';for(let i=e.resultIndex;i<e.results.length;i++)heard+=e.results[i][0].transcript+' ';voiceText.textContent=heard.trim()||'Continue...';if(phraseMatches(heard,mode))voiceSuccess()};
-      recognition.onerror=e=>{if(!matched)showVoice('error','Não consegui ouvir',e.error==='not-allowed'?'Permita o microfone ou use o toque mágico.':'Tente novamente ou use o toque mágico.')};
-      recognition.onend=()=>{clearTimeout(voiceTimeout);if(!matched&&!voicePanel.classList.contains('error'))showVoice('error','O encanto não foi reconhecido','Fale com calma ou use o toque mágico.')};
+      recognition.onerror=e=>{if(matched)return;if(e.error==='not-allowed'){showVoice('error','Não consegui ouvir','Permita o microfone ou use o toque mágico.');return}if(voiceMode==='close'){showTaunt();return}showVoice('error','Não consegui ouvir','Tente novamente ou use o toque mágico.')};
+      recognition.onend=()=>{clearTimeout(voiceTimeout);if(matched||voicePanel.classList.contains('error')||voicePanel.classList.contains('taunt'))return;if(voiceMode==='close'){showTaunt();return}showVoice('error','O encanto não foi reconhecido','Fale com calma ou use o toque mágico.')};
       try{recognition.start()}catch(_){showVoice('error','Escuta indisponível','Use o toque mágico para continuar.')}
     }
     voiceFallback.addEventListener('click',()=>{hideVoice();voiceMode==='open'?openTheMap():closeTheMap()});
