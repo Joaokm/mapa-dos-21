@@ -43,18 +43,18 @@
     @keyframes wandTip{0%,100%{box-shadow:0 0 8px #fff,0 0 20px var(--glow),0 0 34px rgba(120,240,178,.6);opacity:.85}50%{box-shadow:0 0 14px #fff,0 0 30px var(--gold-bright),0 0 52px rgba(120,240,178,.95);opacity:1}}
     .spell-flash{position:fixed;inset:0;z-index:95;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--sx,70%) var(--sy,70%),#fff 0,#fff3cf 2.5%,rgba(120,240,178,.55) 9%,rgba(181,157,105,.28) 20%,transparent 46%)}body.spelling .spell-flash{animation:flash .9s ease-out}@keyframes flash{12%{opacity:1}100%{opacity:0;transform:scale(2)}}
     .incantation{position:fixed;z-index:96;inset:0;display:grid;place-items:center;text-align:center;padding:10vw;pointer-events:none;opacity:0;color:#fff4d4;text-shadow:0 0 8px #fff,0 0 26px rgba(243,214,147,.8),0 0 50px rgba(120,240,178,.6),0 2px 12px #000;font:italic clamp(1.8rem,5vw,5rem) "IM Fell English",serif}body.spelling .incantation{animation:incant 1.15s ease-out}@keyframes incant{0%{opacity:0;filter:blur(10px);transform:scale(.8)}30%,70%{opacity:1;filter:blur(0)}100%{opacity:0;transform:scale(1.08)}}
-    .map-scene{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:clamp(8px,2vw,24px);background:radial-gradient(circle,#242019,#050605 75%);visibility:hidden;opacity:0;transition:opacity .5s ease;perspective:1600px}
-    body.map-visible .map-scene{visibility:visible;opacity:1}.map-book{position:relative;width:min(1120px,96vw);height:min(760px,94svh);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 35px 70px #000;transform:translateY(26px) scale(.72) rotateX(4deg);opacity:.5;transition:transform .9s cubic-bezier(.16,.75,.2,1),opacity .55s ease;transform-style:preserve-3d}body.map-open .map-book{transform:translateY(0) scale(1) rotateX(0);opacity:1}
+    .map-scene{position:fixed;inset:0;z-index:50;display:grid;place-items:start center;padding:clamp(10px,3.2vh,38px) clamp(8px,2vw,24px);background:#04080a;visibility:hidden;opacity:0;transition:opacity .5s ease;perspective:1600px}
+    body.map-visible .map-scene{visibility:visible;opacity:1}.map-book{position:relative;z-index:2;width:min(1000px,88vw);height:min(580px,72svh);display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 35px 80px #000,0 0 60px rgba(0,0,0,.6);transform:translateY(26px) scale(.72) rotateX(4deg);opacity:.5;transition:transform .9s cubic-bezier(.16,.75,.2,1),opacity .55s ease;transform-style:preserve-3d}body.map-open .map-book{transform:translateY(0) scale(1) rotateX(0);opacity:1}
     .panel{position:relative;overflow:hidden;background-color:var(--paper);background-image:radial-gradient(circle at 30% 20%,rgba(255,245,202,.55),transparent 25%),repeating-linear-gradient(102deg,transparent 0 36px,rgba(83,55,31,.035) 37px 38px);border:1px solid rgba(76,51,31,.24);backface-visibility:hidden;will-change:transform;transition:transform .92s cubic-bezier(.16,.78,.2,1)}
     .panel.left{transform-origin:right;transform:rotateY(88deg);z-index:3}.panel.center{z-index:2}.panel.right{transform-origin:left;transform:rotateY(-88deg);z-index:1}body.map-open .panel.left,body.map-open .panel.right{transform:rotateY(0)}body.map-open .panel.left{transition-delay:.08s}body.map-open .panel.right{transition-delay:.2s}body.map-closing .panel.left{transform:rotateY(88deg);transition-delay:.14s}body.map-closing .panel.right{transform:rotateY(-88deg);transition-delay:0s}
     .panel:before{content:"";position:absolute;inset:0;opacity:.18;background:repeating-radial-gradient(circle at 30% 40%,rgba(75,50,31,.22) 0 1px,transparent 2px 11px)}
     .map-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.6;filter:drop-shadow(0 0 3px rgba(151,113,52,.55))}.map-lines path,.map-lines circle{fill:none;stroke:#6f5226;stroke-width:1.2}.map-lines .thin{stroke-width:.55}.map-lines text{font:8px serif;fill:#62493a;letter-spacing:2px}
-    .map-content{position:absolute;inset:0;z-index:4;color:var(--ink);display:grid;grid-template-columns:.75fr 1.6fr .75fr;pointer-events:none;padding:clamp(25px,5vw,65px);opacity:0;transition:opacity .35s ease}body.map-writing .map-content{opacity:1}
+    .map-content{position:absolute;inset:0;z-index:4;color:var(--ink);display:grid;grid-template-columns:.75fr 1.6fr .75fr;pointer-events:none;padding:clamp(12px,2.5vw,28px);opacity:0;transition:opacity .35s ease}body.map-writing .map-content{opacity:1}
     .side-note{font-style:italic;font-size:clamp(.72rem,1.2vw,.9rem);line-height:1.4;align-self:center;text-align:center;opacity:0;transform:rotate(-8deg)}.side-note.right{transform:rotate(7deg)}
-    .invite{text-align:center;align-self:center}.invite .makers{font:700 clamp(.55rem,1vw,.72rem) Cinzel,serif;letter-spacing:.2em;text-transform:uppercase}.invite h2{font:900 clamp(2.5rem,7vw,6.2rem)/.82 Cinzel,serif;letter-spacing:-.06em;margin:.6rem 0;background:linear-gradient(96deg,#7a5a23,#c79a3c 30%,#a9802f 50%,#d7ab46 72%,#7a5a23);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 1px rgba(255,250,230,.5));animation:shimmer 8s linear infinite}.invite h2 span{display:block;font:italic 400 .28em "IM Fell English",serif;letter-spacing:.12em;margin-top:.7rem;-webkit-text-fill-color:#214a36;color:#214a36}.ornament{display:flex;align-items:center;gap:10px;margin:1rem auto;width:min(330px,85%)}.ornament:before,.ornament:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a9802f,transparent)}.ornament i{font-style:normal;color:#bb8f33;text-shadow:0 0 10px rgba(215,171,70,.7);animation:auraPulse 3.5s ease-in-out infinite}
-    .facts{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;margin:1rem 0}.fact{padding:.4rem}.fact+.fact{border-left:1px solid rgba(72,48,33,.35)}.fact small{display:block;font-style:italic}.fact strong{display:block;font:700 clamp(.8rem,1.6vw,1.18rem) Cinzel,serif;margin-top:.2rem}
-    .menu{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.6vw,34px);max-width:660px;margin:1.1rem auto .2rem;text-align:left}.menu section{position:relative}.menu h3{font:700 clamp(.6rem,1.1vw,.74rem) Cinzel,serif;letter-spacing:.16em;text-transform:uppercase;color:#7a5a23;margin:0 0 .4rem;display:flex;align-items:center;gap:.5rem}.menu h3:before{content:"";width:20px;height:1px;background:linear-gradient(90deg,#a9802f,transparent)}.menu p{margin:0;font-style:italic;line-height:1.45;font-size:clamp(.78rem,1.3vw,.96rem);color:#43301f}.menu b{font-style:normal;color:#5a3f1c}
-    .oath{max-width:560px;margin:1.1rem auto 0;line-height:1.45;font-size:clamp(.82rem,1.4vw,1.05rem)}
+    .invite{text-align:center;align-self:center}.invite .makers{font:700 clamp(.55rem,1vw,.72rem) Cinzel,serif;letter-spacing:.2em;text-transform:uppercase}.invite h2{font:900 clamp(2.3rem,6.2vw,5.4rem)/.82 Cinzel,serif;letter-spacing:-.06em;margin:.3rem 0;background:linear-gradient(96deg,#7a5a23,#c79a3c 30%,#a9802f 50%,#d7ab46 72%,#7a5a23);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 1px rgba(255,250,230,.5));animation:shimmer 8s linear infinite}.invite h2 span{display:block;font:italic 400 .28em "IM Fell English",serif;letter-spacing:.12em;margin-top:.7rem;-webkit-text-fill-color:#214a36;color:#214a36}.ornament{display:flex;align-items:center;gap:10px;margin:.6rem auto;width:min(330px,85%)}.ornament:before,.ornament:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a9802f,transparent)}.ornament i{font-style:normal;color:#bb8f33;text-shadow:0 0 10px rgba(215,171,70,.7);animation:auraPulse 3.5s ease-in-out infinite}
+    .facts{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;margin:.55rem 0}.fact{padding:.4rem}.fact+.fact{border-left:1px solid rgba(72,48,33,.35)}.fact small{display:block;font-style:italic}.fact strong{display:block;font:700 clamp(.8rem,1.6vw,1.18rem) Cinzel,serif;margin-top:.2rem}
+    .menu{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.6vw,34px);max-width:660px;margin:.7rem auto .1rem;text-align:left}.menu section{position:relative}.menu h3{font:700 clamp(.6rem,1.1vw,.74rem) Cinzel,serif;letter-spacing:.16em;text-transform:uppercase;color:#7a5a23;margin:0 0 .4rem;display:flex;align-items:center;gap:.5rem}.menu h3:before{content:"";width:20px;height:1px;background:linear-gradient(90deg,#a9802f,transparent)}.menu p{margin:0;font-style:italic;line-height:1.45;font-size:clamp(.78rem,1.3vw,.96rem);color:#43301f}.menu b{font-style:normal;color:#5a3f1c}
+    .oath{max-width:560px;margin:.7rem auto 0;line-height:1.42;font-size:clamp(.8rem,1.35vw,1rem)}
     .reveal{opacity:0;transform:translateY(7px)}body.map-loaded .r1{animation:inkIn .55s 0s forwards}body.map-loaded .r2{animation:inkIn .6s .35s forwards}body.map-loaded .r3{animation:inkIn .6s .8s forwards}body.map-loaded .r4{animation:inkIn .6s 1.35s forwards}body.map-loaded .r5{animation:inkIn .6s 2s forwards}@keyframes inkIn{to{opacity:1;transform:translateY(0)}}
     .reveal-veil{position:absolute;inset:0;width:100%;height:100%;z-index:7;pointer-events:none;background:linear-gradient(135deg,#cbb581,#dec99a 48%,#c5ad76);opacity:0;transition:opacity .35s}body.map-writing .reveal-veil{opacity:.98}body.veil-ready .reveal-veil{background:transparent}
     .footsteps{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden}.trail-step{position:absolute;width:9px;height:18px;margin:-9px 0 0 -4px;border-radius:55% 45% 60% 40%;background:#5a3f1c;opacity:0;transform:rotate(var(--r));box-shadow:0 0 8px rgba(215,171,70,.85),0 0 16px rgba(215,171,70,.4);animation:trailFade 1.5s cubic-bezier(.2,.75,.2,1) forwards}.trail-step:before{content:"";position:absolute;top:-5px;left:-1px;width:3px;height:3px;border-radius:50%;background:#6a4a20;box-shadow:4px -2px #6a4a20,8px 0 #6a4a20,0 0 6px rgba(215,171,70,.7)}.trail-step.right{transform:rotate(var(--r)) scaleX(-1)}@keyframes trailFade{0%{opacity:0;filter:blur(2px);translate:0 -6px}18%{opacity:.92;filter:blur(0);translate:0 0}72%{opacity:.5}100%{opacity:0;filter:blur(2px);translate:0 5px}}
@@ -65,7 +65,27 @@
     .mic{width:42px;height:42px;margin:-2.3rem auto .55rem;border-radius:50%;display:grid;place-items:center;background:#132d21;border:1px solid #789682;box-shadow:0 0 0 0 rgba(184,218,194,.35);font-size:1.1rem}.voice-panel.listening .mic{animation:listen 1.1s ease-out infinite}@keyframes listen{to{box-shadow:0 0 0 18px rgba(184,218,194,0)}}
     .voice-panel strong{display:block;font:700 .68rem Cinzel,serif;letter-spacing:.14em;text-transform:uppercase}.voice-panel q{display:block;min-height:1.4em;margin-top:.35rem;color:#d7c493;font-style:italic}.voice-panel button{display:none;margin:.65rem auto 0;border:1px solid #a68e5e;background:transparent;color:#e9dbb8;padding:.5rem .7rem;cursor:pointer;font:700 .6rem Cinzel,serif;letter-spacing:.1em;text-transform:uppercase}.voice-panel.error button{display:block}
     .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 7px #fff,0 0 20px #b7d1be;z-index:100;pointer-events:none;transform:translate(-50%,-50%)}.cursor:after{content:"";position:absolute;width:54px;height:2px;right:4px;top:4px;background:linear-gradient(90deg,transparent,#dcc795);transform:rotate(-14deg);transform-origin:right}
-    @media(max-width:720px){body{cursor:auto}.cursor{display:none}.portrait{background-position:53% center}.hero-copy{padding:4vh 0}.spell-area{align-self:flex-start;text-align:left;margin:2rem 0 0}.wand-button{cursor:pointer}.map-book{height:94svh;width:97vw}.map-content{grid-template-columns:1fr;padding:55px 24px 38px}.side-note{display:none}.facts{grid-template-columns:1fr}.fact{padding:.22rem}.fact+.fact{border-left:0;border-top:1px solid rgba(72,48,33,.25)}.menu{grid-template-columns:1fr;gap:14px;text-align:center}.menu h3{justify-content:center}.menu h3:before{display:none}.invite h2{font-size:clamp(2.1rem,13vw,4.4rem)}.oath{font-size:.88rem}.map-controls{top:10px;right:10px}.explore-hint{bottom:4%;font-size:.8rem}}
+    @media(max-width:720px){body{cursor:auto}.cursor{display:none}.portrait{background-position:53% center}.hero-copy{padding:4vh 0}.spell-area{align-self:flex-start;text-align:left;margin:2rem 0 0}.wand-button{cursor:pointer}.map-book{height:84svh;width:95vw}.floaties{display:none}.hog-castle{height:14svh}.hog-moon{width:52px;height:52px;right:7%;top:4%}.map-content{grid-template-columns:1fr;padding:55px 24px 38px}.side-note{display:none}.facts{grid-template-columns:1fr}.fact{padding:.22rem}.fact+.fact{border-left:0;border-top:1px solid rgba(72,48,33,.25)}.menu{grid-template-columns:1fr;gap:14px;text-align:center}.menu h3{justify-content:center}.menu h3:before{display:none}.invite h2{font-size:clamp(2.1rem,13vw,4.4rem)}.oath{font-size:.88rem}.map-controls{top:10px;right:10px}.map-foot{font-size:.54rem;letter-spacing:.06em;bottom:6px}.explore-hint{bottom:4%;font-size:.8rem}}
+    /* ---- Cenário de Hogwarts no mapa ---- */
+    .hog{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s ease .25s}body.map-visible .hog{opacity:1}
+    .hog-sky{position:absolute;inset:0;background:radial-gradient(120% 95% at 50% 4%,transparent 46%,rgba(0,0,0,.6)),linear-gradient(180deg,#06140f 0%,#0a2118 30%,#08160f 58%,#040a08 100%)}
+    .hog-aurora{position:absolute;left:-12%;top:6%;width:124%;height:48%;background:radial-gradient(58% 78% at 30% 50%,rgba(64,205,135,.24),transparent 70%),radial-gradient(48% 70% at 72% 42%,rgba(96,232,166,.17),transparent 72%);filter:blur(22px);mix-blend-mode:screen;animation:auroraDrift 16s ease-in-out infinite alternate}
+    @keyframes auroraDrift{0%{transform:translateX(-3%) skewX(-5deg);opacity:.65}100%{transform:translateX(4%) skewX(4deg);opacity:1}}
+    .hog-moon{position:absolute;right:11%;top:9%;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 38% 36%,#fff8e9,#dde9df 58%,#9eb5a8);box-shadow:0 0 42px rgba(222,240,226,.55),0 0 130px rgba(120,240,178,.28)}
+    .hog-stars{position:absolute;inset:0}.hog-stars i{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 4px rgba(220,255,235,.8);opacity:.5;animation:twinkle 3s ease-in-out infinite}
+    @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
+    .hog-castle{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:min(250px,27svh);width:auto;filter:drop-shadow(0 0 34px rgba(40,150,95,.22))}
+    .hog-glow{position:absolute;left:50%;bottom:-3%;transform:translateX(-50%);width:min(1040px,92%);height:min(360px,40svh);background:radial-gradient(60% 96% at 50% 100%,rgba(160,220,255,.4),rgba(86,200,145,.24) 34%,transparent 70%);filter:blur(15px);mix-blend-mode:screen}
+    .hog-castle .body{fill:#0e2018;stroke:rgba(160,220,185,.32);stroke-width:.7}.hog-castle .win{fill:#ffe09a;filter:drop-shadow(0 0 6px rgba(255,215,130,1));animation:winFlicker 4.2s ease-in-out infinite}
+    .hog-castle .win:nth-of-type(2n){animation-delay:1.3s;animation-duration:5.4s}.hog-castle .win:nth-of-type(3n){animation-delay:2.5s}.hog-castle .win:nth-of-type(5n){animation-delay:.7s;animation-duration:3.4s}
+    @keyframes winFlicker{0%,100%{opacity:.9}45%{opacity:.5}72%{opacity:1}}
+    .hog-fog{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(0deg,rgba(7,20,15,.95),rgba(7,20,15,.4) 45%,transparent);filter:blur(3px)}
+    .floaties{position:absolute;inset:0;z-index:1;pointer-events:none}
+    .candle{position:absolute;width:7px;height:30px;border-radius:2px 2px 1px 1px;background:linear-gradient(#f7edca,#e4d196 58%,#c9a85e);box-shadow:0 0 12px rgba(243,226,160,.45),0 3px 6px rgba(0,0,0,.5);animation:floatY 6.5s ease-in-out infinite}
+    .candle:before{content:"";position:absolute;left:50%;top:-2px;width:1.6px;height:5px;background:#3a2a18;transform:translateX(-50%)}
+    .candle:after{content:"";position:absolute;left:50%;top:-13px;width:9px;height:15px;transform:translateX(-50%);border-radius:50% 50% 48% 52%/62% 62% 38% 38%;background:radial-gradient(circle at 50% 72%,#fff 0,#ffe39a 32%,#ff9d3c 68%,rgba(255,120,40,0) 100%);box-shadow:0 0 14px rgba(255,185,85,.95),0 0 32px rgba(255,150,60,.55);animation:flicker 1.5s ease-in-out infinite}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+    @keyframes flicker{0%,100%{transform:translateX(-50%) scaleY(1);opacity:.95}50%{transform:translateX(-52%) scaleY(1.14) translateY(-1px);opacity:1}}
   </style>
 </head>
 <body>
@@ -87,6 +107,34 @@
   <div class="spell-flash"></div><div class="incantation" id="incantation">Juro solenemente não fazer nada de bom.</div>
 
   <section class="map-scene" aria-modal="true" role="dialog" aria-label="Mapa do convite">
+    <div class="hog" aria-hidden="true">
+      <div class="hog-sky"></div>
+      <div class="hog-aurora"></div>
+      <div class="hog-glow"></div>
+      <div class="hog-moon"></div>
+      <div class="hog-stars"></div>
+      <svg class="hog-castle" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+        <path class="body" d="M0,360 L0,300 L120,300 L120,200 L148,200 L148,165 L165,148 L182,165 L182,200 L210,200 L210,300 L280,300 L280,245 L320,245 L320,300 L350,300 L350,150 L392,150 L392,92 L414,55 L436,92 L436,150 L478,150 L478,300 L520,300 L520,205 L575,205 L575,300 L600,300 L600,165 L626,165 L626,120 L645,98 L664,120 L664,165 L690,165 L690,300 L760,300 L760,235 L800,235 L800,300 L835,300 L835,185 L862,185 L862,150 L879,132 L896,150 L896,185 L923,185 L923,300 L1000,300 L1000,255 L1024,255 L1024,300 L1200,300 L1200,360 Z"/>
+        <rect class="win" x="156" y="215" width="10" height="13"/>
+        <rect class="win" x="292" y="258" width="9" height="11"/>
+        <rect class="win" x="405" y="172" width="14" height="21"/>
+        <rect class="win" x="405" y="214" width="14" height="16"/>
+        <rect class="win" x="528" y="226" width="9" height="22"/>
+        <rect class="win" x="544" y="226" width="9" height="22"/>
+        <rect class="win" x="560" y="226" width="9" height="22"/>
+        <rect class="win" x="636" y="194" width="12" height="15"/>
+        <rect class="win" x="772" y="252" width="9" height="12"/>
+        <rect class="win" x="786" y="252" width="9" height="12"/>
+        <rect class="win" x="872" y="205" width="10" height="13"/>
+      </svg>
+      <div class="hog-fog"></div>
+    </div>
+    <div class="floaties" aria-hidden="true">
+      <span class="candle" style="left:3.5%;top:26%;animation-delay:.2s"></span>
+      <span class="candle" style="left:6.5%;top:55%;animation-delay:1.6s"></span>
+      <span class="candle" style="right:3.5%;top:30%;animation-delay:.9s"></span>
+      <span class="candle" style="right:6.5%;top:60%;animation-delay:2.2s"></span>
+    </div>
     <div class="map-book">
       <div class="panel left"></div><div class="panel center"></div><div class="panel right"></div>
       <svg class="map-lines" viewBox="0 0 1120 760" preserveAspectRatio="none" aria-hidden="true">
@@ -104,13 +152,13 @@
           <div class="facts reveal r4">
             <div class="fact"><small>Quando</small><strong>11 de Julho</strong></div>
             <div class="fact"><small>Onde</small><strong>Residência dos Maffei</strong></div>
-            <div class="fact"><small>O sino badala</small><strong>17h → última balada</strong></div>
+            <div class="fact"><small>A partir das</small><strong>17:00</strong></div>
           </div>
           <div class="menu reveal r4">
             <section><h3>Do banquete</h3><p>Pães do salão recheados com <b>carne de Bezerro-da-lua</b> e <b>Pássaro-trovão</b> assado, acompanhados de <b>Pelúcio</b> dourado, entre outras iguarias trazidas direto da maleta do magizoólogo.</p></section>
             <section><h3>Das beberagens</h3><p><b>Suco de abóbora</b> por conta da casa. As demais poções e beberagens ficam por conta de cada bruxo.</p></section>
           </div>
-          <p class="oath reveal r5">Todos os membros da Sociedade estão convocados. Tragam sua melhor magia: o sino badala às cinco da tarde e a folia só silencia na última balada — o mapa não registra hora para o fim.</p>
+          <p class="oath reveal r5">Todos os membros da Sociedade estão convocados. Tragam sua melhor magia: a celebração começa às cinco da tarde e segue até a última vela se apagar — o mapa não registra hora para o fim.</p>
         </article>
         <p class="side-note right reveal r5">A presença de cada convidado<br>deixará sua marca nesta noite.</p>
       </div>
@@ -119,7 +167,7 @@
         <button class="close-map" id="closeMap"><span class="wand-art"></span>Diga: Malfeito feito</button>
       </div>
       <div class="explore-hint">Siga com o mouse ou dedo: a tinta revelada permanecerá no mapa</div>
-      <div class="map-foot">11 • 07 — Residência dos Maffei — 17h até a última balada do sino</div>
+      <div class="map-foot">11 • 07 — Residência dos Maffei — a partir das 17h</div>
     </div>
   </section>
 
@@ -228,6 +276,7 @@
     const _revealAt=revealAt;revealAt=function(cx,cy){_revealAt(cx,cy);if(body.classList.contains('map-writing')&&Math.random()<.5)spawnSparks(cx,cy,3)};
     mapBook.addEventListener('pointermove',e=>{if(body.classList.contains('map-writing')&&Math.random()<.35)spawnSparks(e.clientX,e.clientY,2)});
     const _spell=spell;spell=function(text,reverse=false){_spell(text,reverse);spawnSparks(innerWidth*0.5,innerHeight*0.5,reverse?22:40)};
+    (function genStars(){const box=document.querySelector('.hog-stars');if(!box)return;let html='';for(let i=0;i<46;i++){const x=(Math.random()*100).toFixed(2),y=(Math.random()*60).toFixed(2),s=(Math.random()<.22?2.4:1.4).toFixed(1),d=(Math.random()*4).toFixed(2),du=(2.4+Math.random()*3).toFixed(2);html+=`<i style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s;animation-duration:${du}s"></i>`}box.innerHTML=html})();
   </script>
 </body>
 </html>
