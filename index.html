@@ -193,30 +193,14 @@
     let cuesPrimed=false;
     function primeCues(){if(cuesPrimed)return;cuesPrimed=true;[openCue,closeCue].forEach(cue=>{cue.volume=0;const p=cue.play();if(p)p.then(()=>setTimeout(()=>{cue.pause();cue.currentTime=0;cue.volume=1},35)).catch(()=>{})})}
     function mapSound(reverse=false){const cue=reverse?closeCue:openCue;cue.pause();cue.currentTime=0;cue.volume=1;const p=cue.play();if(p)p.catch(()=>synthMapSound(reverse));else synthMapSound(reverse)}
-    function synthTaunt(){
-      const a=audioEngine();if(!a)return;const t0=a.currentTime+.04,master=a.createGain();master.gain.value=.85;master.connect(a.destination);
-      const notes=[{f:262,d:.24,s:0},{f:247,d:.24,s:.28},{f:233,d:.24,s:.56},{f:208,d:.92,s:.86,bend:165}];
-      notes.forEach(n=>{
-        const t=t0+n.s,osc=a.createOscillator(),sub=a.createOscillator(),filt=a.createBiquadFilter(),g=a.createGain(),lfo=a.createOscillator(),lfoG=a.createGain();
-        osc.type='sawtooth';sub.type='triangle';
-        osc.frequency.setValueAtTime(n.f*1.05,t);osc.frequency.exponentialRampToValueAtTime(n.f,t+.07);
-        sub.frequency.setValueAtTime(n.f*0.5*1.05,t);sub.frequency.exponentialRampToValueAtTime(n.f*0.5,t+.07);
-        if(n.bend){osc.frequency.setValueAtTime(n.f,t+n.d*.42);osc.frequency.exponentialRampToValueAtTime(n.bend,t+n.d);sub.frequency.setValueAtTime(n.f*.5,t+n.d*.42);sub.frequency.exponentialRampToValueAtTime(n.bend*.5,t+n.d);}
-        lfo.frequency.value=5.5;lfoG.gain.value=4;lfo.connect(lfoG);lfoG.connect(osc.frequency);lfo.start(t);lfo.stop(t+n.d+.05);
-        filt.type='lowpass';filt.Q.value=7;filt.frequency.setValueAtTime(650,t);filt.frequency.linearRampToValueAtTime(1700,t+.09);filt.frequency.linearRampToValueAtTime(720,t+n.d);
-        g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.05);g.gain.setValueAtTime(.5,t+n.d*.72);g.gain.exponentialRampToValueAtTime(.0001,t+n.d);
-        osc.connect(filt);sub.connect(filt);filt.connect(g);g.connect(master);
-        osc.start(t);osc.stop(t+n.d+.05);sub.start(t);sub.stop(t+n.d+.05);
-      });
-    }
-    function spell(text,reverse=false,sound){incantation.textContent=text;body.classList.remove('spelling');void body.offsetWidth;body.classList.add('spelling');sound==='taunt'?synthTaunt():mapSound(reverse);setTimeout(()=>body.classList.remove('spelling'),1200)}
+    function spell(text,reverse=false){incantation.textContent=text;body.classList.remove('spelling');void body.offsetWidth;body.classList.add('spelling');mapSound(reverse);setTimeout(()=>body.classList.remove('spelling'),1200)}
     let busy=false,timers=[];
     function later(fn,ms){const id=setTimeout(fn,ms);timers.push(id);return id}
     function openTheMap(taunt=false){
       if(busy||body.classList.contains('map-visible'))return;
       busy=true;body.classList.remove('has-revealed','veil-ready','exploring','map-taunted');
       if(taunt)body.classList.add('map-taunted');
-      spell(taunt?'':'Juro solenemente não fazer nada de bom.',false,taunt?'taunt':'');body.classList.add('map-visible');
+      spell(taunt?'':'Juro solenemente não fazer nada de bom.');body.classList.add('map-visible');
       requestAnimationFrame(()=>requestAnimationFrame(()=>body.classList.add('map-open')));
       if(!taunt){later(initVeil,700);later(()=>body.classList.add('map-writing'),820);later(()=>body.classList.add('map-loaded'),1320);}
       later(()=>{busy=false},taunt?1000:1450);
@@ -292,7 +276,7 @@
     addEventListener('resize',()=>{resizeParticles();initMotes()});
     const _revealAt=revealAt;revealAt=function(cx,cy){_revealAt(cx,cy);if(body.classList.contains('map-writing')&&Math.random()<.5)spawnSparks(cx,cy,3)};
     mapBook.addEventListener('pointermove',e=>{if(body.classList.contains('map-writing')&&Math.random()<.35)spawnSparks(e.clientX,e.clientY,2)});
-    const _spell=spell;spell=function(text,reverse=false,sound){_spell(text,reverse,sound);spawnSparks(innerWidth*0.5,innerHeight*0.5,reverse?22:40)};
+    const _spell=spell;spell=function(text,reverse=false){_spell(text,reverse);spawnSparks(innerWidth*0.5,innerHeight*0.5,reverse?22:40)};
   </script>
 </body>
 </html>
